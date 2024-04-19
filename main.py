@@ -66,7 +66,7 @@ if __name__ == "__main__":
         
         # 如果文件列表为空
         if not file_list:
-            print("Diretório vazio. Aguardando 15 segundos antes de verificar novamente.")
+            print("目录为空，等待60秒后再检查。")
             sleep(60)  # 暂停60秒后再次检查
         else:
             # 如果文件列表不为空，则调用send_media_files函数发送文件到指定的频道
