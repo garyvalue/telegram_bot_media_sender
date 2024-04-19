@@ -59,11 +59,16 @@ def send_media_files(folder_path, channel_id, bot):
 # bot = 你的Telegram Bot对象
 # send_media_files(folder_path, channel_id, bot)
 
+# 主程序入口
 if __name__ == "__main__":
     while True:
+        # 列出指定文件夹中的文件列表
         file_list = os.listdir(folder_to_post)
+        
+        # 如果文件列表为空
         if not file_list:
             print("Diretório vazio. Aguardando 15 segundos antes de verificar novamente.")
-            sleep(15)  # Pausa de 15 segundos antes de verificar novamente
+            sleep(15)  # 暂停15秒后再次检查
         else:
+            # 如果文件列表不为空，则调用send_media_files函数发送文件到指定的频道
             send_media_files(folder_to_post, channel_id, bot)
