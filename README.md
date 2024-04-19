@@ -30,7 +30,7 @@
       - folder_to_post：替换为包含您的媒体文件的文件夹路径。
       - bot_token：替换为您机器人的 API 令牌。
 
-## Usage
+## 用法
 
 1. 运行脚本：
    ```bash
