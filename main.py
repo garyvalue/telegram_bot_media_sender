@@ -15,7 +15,7 @@ bot = telebot.TeleBot(bot_api)
 
 def send_media_files(folder_path, channel_id, bot):
     """
-    遍历指定文件夹中的媒体文件，并按字母顺序发送到Telegram频道。
+    遍历指定文件夹中的媒体文件，随机打乱发送到Telegram频道。
     """
     file_list = os.listdir(folder_path)
     random.shuffle(file_list)  # 随机打乱文件列表
