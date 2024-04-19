@@ -6,7 +6,7 @@ from time import sleep
 from credencials import *
 
 # 设置日志格式和级别
-logging.basicConfig(filename='telegram_bot.log', level=logging.ERROR, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(filename='telegram_bot.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 channel_id = channel_id
 folder_to_post = folder
