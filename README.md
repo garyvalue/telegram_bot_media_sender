@@ -18,7 +18,6 @@ Not working to well for big video files.
 1. **Install dependencies:**
    ```bash
    pip install -r requirements.txt
-   
 
 2. **Create a Telegram bot:**
    - Contact the BotFather on Telegram to create a new bot and obtain its API token.
