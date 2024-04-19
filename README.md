@@ -35,7 +35,6 @@
 1. 运行脚本：
    ```bash
    python telegram_media_sender.py
-   
 
 2. 脚本将开始监视指定的文件夹，并将任何新的媒体文件发送到 Telegram 频道。
 
