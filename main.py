@@ -8,8 +8,6 @@ channel_id = media
 folder_to_post = folder
 bot = telebot.TeleBot(bot_api)
 
-import os
-from time import sleep
 
 def send_media_files(folder_path, channel_id, bot):
     """
@@ -27,26 +25,27 @@ def send_media_files(folder_path, channel_id, bot):
                     title = os.path.splitext(filename)[0]  # 获取文件名（不带扩展名）
                     if filename.lower().endswith(('.jpg', '.jpeg', '.png')):
                         bot.send_photo(channel_id, f, caption=title)
-                        print('sent')
+                        print(f"{filename} sent")
                         sleep(1)  # 间隔1秒
 
                     elif filename.lower().endswith('.mp4'):
                         bot.send_video(channel_id, f, caption=title)
-                        print('sent')
+                        print(f"{filename} sent")
                         sleep(1)  # 间隔1秒
 
                     elif filename.lower().endswith(('.gif', '.webp')):
                         bot.send_document(channel_id, f, caption=title)
-                        print('sent')
+                        print(f"{filename} sent")
                         sleep(1)  # 间隔1秒
 
-                    os.remove(file_path)  # 成功发送后删除文件
-                    file_count += 1
+                sleep(10)  # 成功发送后暂停10秒
+                os.remove(file_path)  # 成功发送后删除文件
+                file_count += 1
 
-                    # 发送10个文件后暂停1小时
-                    if file_count % 10 == 0:
-                        print("已发送10个文件。暂停1小时...")
-                        sleep(3600)  # 暂停1小时（3600秒）
+                # 发送10个文件后暂停1小时
+                if file_count % 10 == 0:
+                    print("已发送10个文件。暂停1小时...")
+                    sleep(3600)  # 暂停1小时（3600秒）
 
             except Exception as e:
                 print(f"发送文件{filename}时出错：{str(e)}")
