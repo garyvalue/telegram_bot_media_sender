@@ -2,7 +2,7 @@ import os
 import random  # 添加了对random模块的导入
 import logging
 import telebot
-from time import sleep
+from time import sleep, time  # 导入 time 模块
 from credencials import *
 
 # 设置日志格式和级别
