@@ -1,9 +1,12 @@
 import os
 import random  # 添加了对random模块的导入
+import logging
 import telebot
 from time import sleep
 from credencials import *
 
+# 设置日志格式和级别
+logging.basicConfig(filename='telegram_bot.log', level=logging.ERROR, format='%(asctime)s - %(levelname)s - %(message)s')
 
 channel_id = channel_id
 folder_to_post = folder
@@ -16,7 +19,7 @@ def send_media_files(folder_path, channel_id, bot):
     """
     file_list = os.listdir(folder_path)
     random.shuffle(file_list)  # 随机打乱文件列表
-#    file_list.sort()  # 对文件列表进行字母顺序排序
+#   file_list.sort()  # 对文件列表进行字母顺序排序
 
     file_count = 0  # 已发送文件计数
     for filename in file_list:
@@ -44,21 +47,19 @@ def send_media_files(folder_path, channel_id, bot):
                 os.remove(file_path)  # 成功发送后删除文件
                 file_count += 1
 
-                # 发送10个文件后暂停1小时
+                 # 发送10个文件后暂停1小时
                 if file_count % 10 == 0:
-                    print("已发送10个文件。暂停1小时...")
+                    logging.info("已发送10个文件。暂停1小时...")
                     sleep(3600)  # 暂停1小时（3600秒）
 
             except Exception as e:
-                print(f"发送文件{filename}时出错：{str(e)}")
+                logging.error(f"发送文件{filename}时出错：{str(e)}")
                 if "429" in str(e):  # 如果是429错误，即请求过于频繁
-                    print("遇到了请求过于频繁的错误，暂停一段时间后重试...")
+                    logging.warning("遇到了请求过于频繁的错误，暂停一段时间后重试...")
                     sleep(180)  # 暂停3分钟后重试
                 else:
-                    print("遇到了发送失败的情况，暂停一段时间后重试...")
+                    logging.error("遇到了发送失败的情况，暂停一段时间后重试...")
                     sleep(10)  # 暂停10秒后重试
-
-            #sleep(10)  # 发送间隔10秒
 
 # 示例用法:
 # folder_path = '/你的/文件夹/路径'
