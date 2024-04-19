@@ -51,6 +51,12 @@ def send_media_files(folder_path, channel_id, bot):
 
             except Exception as e:
                 print(f"发送文件{filename}时出错：{str(e)}")
+                if "429" in str(e):  # 如果是429错误，即请求过于频繁
+                    print("遇到了请求过于频繁的错误，暂停一段时间后重试...")
+                    sleep(180)  # 暂停3分钟后重试
+                else:
+                    print("遇到了发送失败的情况，暂停一段时间后重试...")
+                    sleep(10)  # 暂停10秒后重试
 
             #sleep(10)  # 发送间隔10秒
 
