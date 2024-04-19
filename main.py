@@ -67,15 +67,27 @@ def send_media_files(folder_path, channel_id, bot):
 # bot = 你的Telegram Bot对象
 # send_media_files(folder_path, channel_id, bot)
 
+# 删除超过24小时的旧日志文件
+def delete_old_logs(log_file):
+    now = time()
+    twenty_four_hours_ago = now - (24 * 3600)
+    if os.path.exists(log_file):
+        modified_time = os.path.getmtime(log_file)
+        if modified_time < twenty_four_hours_ago:
+            os.remove(log_file)
+
 # 主程序入口
 if __name__ == "__main__":
+    # 删除超过24小时的旧日志文件
+    delete_old_logs('telegram_bot.log')
+    
     while True:
         # 列出指定文件夹中的文件列表
         file_list = os.listdir(folder_to_post)
         
         # 如果文件列表为空
         if not file_list:
-            print("目录为空，等待60秒后再检查。")
+            logging.info("目录为空，等待60秒后再检查。")
             sleep(60)  # 暂停60秒后再次检查
         else:
             # 如果文件列表不为空，则调用send_media_files函数发送文件到指定的频道
