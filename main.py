@@ -1,4 +1,5 @@
 import os
+import random  # 添加了对random模块的导入
 import telebot
 from time import sleep
 from credencials import *
@@ -14,7 +15,8 @@ def send_media_files(folder_path, channel_id, bot):
     遍历指定文件夹中的媒体文件，并按字母顺序发送到Telegram频道。
     """
     file_list = os.listdir(folder_path)
-    file_list.sort()  # 对文件列表进行字母顺序排序
+    random.shuffle(file_list)  # 随机打乱文件列表
+#    file_list.sort()  # 对文件列表进行字母顺序排序
 
     file_count = 0  # 已发送文件计数
     for filename in file_list:
