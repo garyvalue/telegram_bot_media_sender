@@ -27,17 +27,17 @@ def send_media_files(folder_path, channel_id, bot):
                     title = os.path.splitext(filename)[0]  # 获取文件名（不带扩展名）
                     if filename.lower().endswith(('.jpg', '.jpeg', '.png')):
                         bot.send_photo(channel_id, f, caption=title)
-                        print(f"{filename} sent")
+                        print(f"{filename} 发送成功")
                         sleep(1)  # 间隔1秒
 
                     elif filename.lower().endswith('.mp4'):
                         bot.send_video(channel_id, f, caption=title)
-                        print(f"{filename} sent")
+                        print(f"{filename} 发送成功")
                         sleep(1)  # 间隔1秒
 
                     elif filename.lower().endswith(('.gif', '.webp')):
                         bot.send_document(channel_id, f, caption=title)
-                        print(f"{filename} sent")
+                        print(f"{filename} 发送成功")
                         sleep(1)  # 间隔1秒
 
                 sleep(10)  # 成功发送后暂停10秒
