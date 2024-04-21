@@ -31,19 +31,18 @@ def send_media_files(folder_path, channel_id, bot):
                     if filename.lower().endswith(('.jpg', '.jpeg', '.png')):
                         bot.send_photo(channel_id, f, caption=title)
                         print(f"{filename} 发送成功")
-                        sleep(1)  # 间隔1秒
+                        sleep(10)  # 间隔10秒
 
                     elif filename.lower().endswith('.mp4'):
                         bot.send_video(channel_id, f, caption=title)
                         print(f"{filename} 发送成功")
-                        sleep(1)  # 间隔1秒
+                        sleep(10)  # 间隔10秒
 
                     elif filename.lower().endswith(('.gif', '.webp')):
                         bot.send_document(channel_id, f, caption=title)
                         print(f"{filename} 发送成功")
-                        sleep(1)  # 间隔1秒
+                        sleep(10)  # 间隔10秒
 
-                sleep(10)  # 成功发送后暂停10秒
                 os.remove(file_path)  # 成功发送后删除文件
                 file_count += 1
 
@@ -92,3 +91,5 @@ if __name__ == "__main__":
         else:
             # 如果文件列表不为空，则调用send_media_files函数发送文件到指定的频道
             send_media_files(folder_to_post, channel_id, bot)
+            # 等待10秒，避免过于频繁的请求
+            sleep(10)
