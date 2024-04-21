@@ -74,6 +74,11 @@ def delete_old_logs(log_file):
         modified_time = os.path.getmtime(log_file)
         if modified_time < twenty_four_hours_ago:
             os.remove(log_file)
+            
+# 监听器，用于接收并响应私聊消息
+@bot.message_handler(commands=['start'])
+def handle_start_command(message):
+    bot.reply_to(message, "欢迎使用Telegram自动发送机器人。当前运行状态：正在等待发送文件...")
 
 # 主程序入口
 if __name__ == "__main__":
@@ -93,3 +98,5 @@ if __name__ == "__main__":
             send_media_files(folder_to_post, channel_id, bot)
             # 等待10秒，避免过于频繁的请求
             sleep(10)
+            
+bot.polling(none_stop=True)  # 启动Bot的长轮询模式
